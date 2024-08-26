@@ -1,3 +1,5 @@
+//    npx ts-node algoritams/linked-list.ts
+
 class Nod<T> {
     data: T;
     next: Nod<T> | null;
