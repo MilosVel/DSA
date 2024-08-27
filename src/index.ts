@@ -1,1 +1,1 @@
-console.log('TS file');
+console.log('Algoritams');

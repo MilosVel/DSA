@@ -1,10 +1,18 @@
 {
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "watch": "tsc -w",
+    "build": "tsc && mkdir dist && cp -r src/* dist/"
+  },
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
     "@types/node": "^22.5.0",
+    "lite-server": "^2.6.1",
+    "undici-types": "^6.19.8",
     "zod": "^3.23.8"
   }
 }
