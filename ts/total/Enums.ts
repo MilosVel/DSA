@@ -20,6 +20,11 @@ const LogLevelObj =  {
 } as const // mora se koristiti as const
 
 
+///////////////////////////////////////////////////
+type ObjectValuesArray<T> = T[]
+const arr: ObjectValuesArray<1> = [1,1,1,1]
+///////////////////////////////////////////////////
+
 type ObjectValues<T> = T[keyof T]
 type LogLevelString = ObjectValues<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR"
 
