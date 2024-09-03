@@ -52,5 +52,9 @@ type A51 =  OnlyStrings< "checkbox" | undefined | "text" | number> // type A51 =
 type ToArray <T> = T extends T ? Array<T> : never
 type A6 = ToArray<ASimpleUnion> // type A6 = number[] | undefined[] | "checkbox"[] | "text"[]
 
+type ToArray1<T> = T extends string ? Array<T> : never
+type A61 = ToArray1<ASimpleUnion> // type A61 = "checkbox"[] | "text"[]
+
+
 type ToArrayASimpeUnion <T> = [T] extends [T] ? Array<T> : never
 type A7 = ToArrayASimpeUnion<ASimpleUnion> // type A7 = ASimpleUnion[]
