@@ -1,6 +1,6 @@
 import { never } from "zod"
 
-type QueueJob<Q extends String, P> = {
+type QueueJob<Q extends string, P> = {
     queue: Q,
     payload: P
 }
