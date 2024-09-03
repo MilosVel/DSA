@@ -1,5 +1,3 @@
-import { never } from "zod"
-
 type QueueJob<Q extends string, P> = {
     queue: Q,
     payload: P
@@ -34,5 +32,3 @@ type QueueName<J extends QueueJob<string, unknown>> = J extends QueueJob<infer N
 
 type EmailQueue = QueueName<WelcomeEmailJob>
 type PaymentQueue = QueueName<ProcessPaymentJob>
-
-
