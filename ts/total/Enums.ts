@@ -49,6 +49,9 @@ const Log =  {
     ERROR : 'ERROR'
 } as const // mora se koristiti as const
 
+type keySedondWay =  typeof Log [keyof typeof Log] // type keySedondWay = "WARNING" | "ERROR" | "DEBUG"
+
+
 type key = keyof typeof Log // type key = "DEBUG" | "WARNING" | "ERROR"
 
 function fnLog (message: string , key:key) {
