@@ -49,10 +49,10 @@ const Log =  {
     ERROR : 'ERROR'
 } as const // mora se koristiti as const
 
-type keySedondWay =  typeof Log [keyof typeof Log] // type keySedondWay = "WARNING" | "ERROR" | "DEBUG"
+type keySedondWay =  typeof Log [keyof typeof Log] // type keySedondWay = "WARNING" | "ERROR" | "DEBUG"  // Ovo vraca vrednosti
 
 
-type key = keyof typeof Log // type key = "DEBUG" | "WARNING" | "ERROR"
+type key = keyof typeof Log // type key = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
 
 function fnLog (message: string , key:key) {
 console.log(`${Log[key]} : ${message}`);
