@@ -26,7 +26,7 @@ const arr: ObjectValuesArray<1> = [1,1,1,1]
 ///////////////////////////////////////////////////
 
 type ObjectValues<T> = T[keyof T]
-type LogLevelStringValues = ObjectValues<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR"  // Ovo vraca vresnosti
+type LogLevelStringValues = ObjectValues<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR"  // Ovo vraca vrednosti - values
 
 type ObjectKeys<T> = keyof T 
 type LogLevelStringKeys = ObjectKeys<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
