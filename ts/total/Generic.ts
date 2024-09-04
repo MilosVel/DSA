@@ -200,8 +200,10 @@ const result = makeZodSafeFetch('/api/endpoints', z.object({
 console.log(result);
 
 
-///////////////////
-///////////////////
+///////////////////    Practical example
+
+
+
 type SelectOption = {
     value: string;
     label: string;
