@@ -199,3 +199,32 @@ const result = makeZodSafeFetch('/api/endpoints', z.object({
 
 console.log(result);
 
+
+///////////////////
+///////////////////
+type SelectOption = {
+    value: string;
+    label: string;
+  };
+
+ function createSelectOption<T>(
+    items: T[] = [],
+    formatItem: (item: T) => SelectOption,
+  ): SelectOption[] {
+    return items.map(formatItem);
+  }
+  
+interface IContactType {
+    id: number;
+    name: string;
+  }
+
+  const contactTypesList: IContactType[] = [
+    // {id:1, name: 'Milos'}
+  ] 
+
+
+  const createdOptions =  createSelectOption(contactTypesList , (contact_type) => ({
+    label: contact_type.name,
+    value: String(contact_type.id),
+  }));
