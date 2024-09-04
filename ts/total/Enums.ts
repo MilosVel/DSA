@@ -25,11 +25,11 @@ type ObjectValuesArray<T> = T[]
 const arr: ObjectValuesArray<1> = [1,1,1,1]
 ///////////////////////////////////////////////////
 
-type ObjectValuesForValues<T> = T[keyof T]
-type LogLevelStringValues = ObjectValuesForValues<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR"  // Ovo vraca vresnosti
+type ObjectValues<T> = T[keyof T]
+type LogLevelStringValues = ObjectValues<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR"  // Ovo vraca vresnosti
 
-type ObjectValuesforKeys<T> = keyof T 
-type LogLevelStringKeys = ObjectValuesforKeys<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
+type ObjectKeys<T> = keyof T 
+type LogLevelStringKeys = ObjectKeys<typeof LogLevelObj> // type LogLevelString = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
 
 function logFn(message:string , level:LogLevelStringKeys){}
 
