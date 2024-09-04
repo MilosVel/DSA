@@ -65,6 +65,7 @@ type Result1 = GetRetunrType<
 
 
 type GetPromiseRetunrType<T extends (...args) => unknown> = Awaited<ReturnType<T>>
+// type GetPromiseRetunrType<T extends (...args) => unknown> = ReturnType<T>  // ovo vraca Promise
 type Result = GetPromiseRetunrType<
     () => Promise<{
         firstNname: string,
