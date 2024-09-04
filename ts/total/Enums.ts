@@ -49,15 +49,15 @@ logFn('Hey',LogLevelObj.DEBUG)
 const Log =  {
     DEBUG : 'DEBUG',
     WARNING : 'WARNING',
-    ERROR : 'ERROR'
+    ERROR11111111111 : 'ERRORqqqqqqqqqqqqqqqq'
 } as const // mora se koristiti as const
 
-type keySedondWay =  typeof Log [keyof typeof Log] // type keySedondWay = "WARNING" | "ERROR" | "DEBUG"  // Ovo vraca vrednosti
+type values =  typeof Log [keyof typeof Log] // type values = "WARNING" | "ERROR" | "DEBUG"  // Ovo vraca vrednosti
 
 
-type key = keyof typeof Log // type key = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
+type keys = keyof typeof Log // type key = "DEBUG" | "WARNING" | "ERROR" // Ovo vraca keys
 
-function fnLog (message: string , key:key) {
+function fnLog (message: string , key:keys) {
 console.log(`${Log[key]} : ${message}`);
 }
 
