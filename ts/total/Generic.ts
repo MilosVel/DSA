@@ -200,7 +200,7 @@ const result = makeZodSafeFetch('/api/endpoints', z.object({
 console.log(result);
 
 
-///////////////////    Practical example
+///////////////////    Practical example (crating options for select from array of object from data base)
 
 
 
