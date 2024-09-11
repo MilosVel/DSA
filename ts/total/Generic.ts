@@ -73,6 +73,13 @@ type Result = GetPromiseRetunrType<
     }>>
 
 
+type ResultWithSyncFunction = GetPromiseRetunrType<
+    () => {
+        firstNname: string,
+        lastName: string
+    }>
+
+
 
 
 // // TIP Number  6
@@ -162,7 +169,7 @@ const value = getValue(
 
 
 
-const createSet = <T = string> () => {
+const createSet = <T = string>() => {
     return new Set<T>()
 }
 
@@ -208,26 +215,26 @@ console.log(result);
 type SelectOption = {
     value: string;
     label: string;
-  };
+};
 
- function createSelectOption<T>(
+function createSelectOption<T>(
     items: T[] = [],
     formatItem: (item: T) => SelectOption,
-  ): SelectOption[] {
+): SelectOption[] {
     return items.map(formatItem);
-  }
-  
+}
+
 interface IContactType {
     id: number;
     name: string;
-  }
+}
 
-  const contactTypesList: IContactType[] = [
+const contactTypesList: IContactType[] = [
     // {id:1, name: 'Milos'}
-  ] 
+]
 
 
-  const createdOptions =  createSelectOption(contactTypesList , (contact_type) => ({
+const createdOptions = createSelectOption(contactTypesList, (contact_type) => ({
     label: contact_type.name,
     value: String(contact_type.id),
-  }));
+}));
