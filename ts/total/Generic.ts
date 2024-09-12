@@ -201,7 +201,7 @@ const result = makeZodSafeFetch('/api/endpoints', z.object({
     lastName: z.string(),
     id: z.number()
 })).then(res => {
-    console.log(res)
+    console.log(res,' generic response')
     return res
 })
 

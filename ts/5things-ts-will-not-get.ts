@@ -54,15 +54,15 @@ addGlobalHandler('anyThing')
 /////////////////  3. NOMINAL TYPES
 
 
-///////   Problem Explanation with Nominal Types
-// type AbsolutePath = string
-// type RelativePath = string
+/////   Problem Explanation with Nominal Types
+type AbsolutePath_1 = string
+type RelativePath_1 = string
 
-// const absolutePath: AbsolutePath = 'path/to/file'
-// const relativePath: RelativePath = '../../file'
+const absolutePath_1: AbsolutePath_1 = 'path/to/file'
+const relativePath_1: RelativePath_1 = '../../file'
 
-// const acceptsAbsolutePath = (path:AbsolutePath) =>path
-// acceptsAbsolutePath(relativePath)    // We need to make it throw error
+const acceptsAbsolutePath_1 = (path:AbsolutePath_1) =>path
+acceptsAbsolutePath_1(relativePath_1)    // We need to make it Throw error
 
 
 
