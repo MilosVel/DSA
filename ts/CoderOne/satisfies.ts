@@ -31,7 +31,7 @@ interface ICustomImage {
     image: "image-url",
   };
 
- let img =  badUser.image // continue with . to see autocomplete
+ let img =  badUser.image // continue with . to see bad autocomplete
 
   
   
@@ -44,6 +44,6 @@ interface ICustomImage {
     // image: 'image-url',
   } satisfies IUser;
 
-  let image = goodUser.image    // continue with . to see autocomplete
+  let image = goodUser.image    // continue with . to see good autocomplete
   
   export {};
