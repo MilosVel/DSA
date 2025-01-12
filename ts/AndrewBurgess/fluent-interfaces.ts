@@ -72,14 +72,14 @@ const query = new QueryBuilder()
 
 //////////////////////////
 //////////////////////////
-//////////////////////////
+//////////////////////////  Isti primer kao gore
 //////////////////////////
 //////////////////////////
 
 function pipe<A, B>(fn: (a: A) => B) {
     console.log("ROOT");
     function run(a: A) {
-        console.log("Running", a);
+        console.log("Running", a, ' funkcija je ', fn);
         return fn(a);
     }
 
@@ -92,14 +92,23 @@ function pipe<A, B>(fn: (a: A) => B) {
 }
 
 
-const processFullName = pipe((fullName: string) => fullName.trim()) 
-    .pipe((name) => name.toUpperCase())
-    .pipe((name) => name.split(" ")) 
-    .pipe((parts) => ({
-        firstName: parts[0],
-        lastName: parts.length > 1 ? parts[1] : "",
-    }))
-    .pipe((obj) => `${obj.firstName} ${obj.lastName}`.trim()); 
+const processFullName = pipe((fullName: string) => {
+    console.log('trimmig');
+    return fullName.trim()
+})
+    .pipe((name) => {
+        console.log('uppercasing');
+        return name.toUpperCase()
+    })
+// .pipe((name) => {
+//     console.log('splitting');
+//     return name.split(" ")
+// })
+// .pipe((parts) => ({
+//     firstName: parts[0],
+//     lastName: parts.length > 1 ? parts[1] : "",
+// }))
+// .pipe((obj) => `${obj.firstName} ${obj.lastName}`.trim());
 
 
 const result = processFullName("   John   Doe   ");
