@@ -33,6 +33,8 @@ const j : SendemailJob = {
 
 const run = enqueueJob(j)
 
-run.onComplete((job)=>{
-    job
+let response = run.onComplete((job)=>{
+    console.log('onComplete fn')
+   return  job
 })
+console.log( response)

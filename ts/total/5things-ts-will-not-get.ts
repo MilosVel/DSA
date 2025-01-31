@@ -78,3 +78,4 @@ const relativePath = '../../file' as RelativePath     // casting is needed for t
 
 const acceptsAbsolutePath = (path:AbsolutePath) =>path
 // acceptsAbsolutePath(relativePath)    // This will finally throw error
+acceptsAbsolutePath(absolutePath)    // This is ok

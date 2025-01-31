@@ -100,10 +100,10 @@ const processFullName = pipe((fullName: string) => {
         console.log('uppercasing');
         return name.toUpperCase()
     })
-// .pipe((name) => {
-//     console.log('splitting');
-//     return name.split(" ")
-// })
+    .pipe((name) => {
+        console.log('splitting');
+        return name.split(" ")
+    })
 // .pipe((parts) => ({
 //     firstName: parts[0],
 //     lastName: parts.length > 1 ? parts[1] : "",
