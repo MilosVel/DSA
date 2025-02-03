@@ -16,9 +16,9 @@
     "strict": true /* Enable all strict type-checking options. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
-   "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
-    "moduleResolution": "node"  // Add this line
+    "moduleResolution": "node" // Add this line
   },
   "exclude": [
     "node_modules" // would be the default
@@ -26,24 +26,11 @@
   "include": ["src/**/*"]
 }
 
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
 
 // {
 //   "compilerOptions": {
@@ -59,9 +46,9 @@
 
 //     /* Language and Environment */
 //     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    
-//     "lib": ["ES2015", "DOM"], 
-//     "types": ["node"],   
+
+//     "lib": ["ES2015", "DOM"],
+//     "types": ["node"],
 
 //     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
 //     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
