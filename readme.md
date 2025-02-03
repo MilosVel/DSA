@@ -7,10 +7,4 @@
    "types": ["node"],
 6. npx ts-node index.ts (pokretanje odredjenog fajla)
 
-Kada u package.json imamo: "type": "module", onda moramo koristi komandu:
-
-- node --loader ts-node/esm src/index.ts
-
-Ako u package.json nemamo: "type": "module", onda koristimo:
-
-- npx ts-node src/index.ts
+- Pokretanje: npx tsx src/index.ts
