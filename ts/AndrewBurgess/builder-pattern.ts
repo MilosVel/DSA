@@ -112,7 +112,7 @@
 ///////////////////////
 
 
-export type Invoice = {
+type Invoice = {
     // type Invoice = {
     product: string;
     total: number
