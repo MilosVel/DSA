@@ -15,7 +15,7 @@ type DisallowedChars = '\n' | ' ' | '"' | "'" | "-"
 // type MetricName<T extends string> = T extends `${infer _a}${DisallowedChars}${infer _b}` ? never :
 //     T extends Lowercase<T> ? T : never
 
-//// varijanta 4
+//// Varijanta 4
 type MetricName<T extends string> = T extends `${infer _a}${DisallowedChars}${infer _b}` ? never :
     T extends Lowercase<T> ? T extends '' ? NoEmptyString : T : never
 
@@ -23,7 +23,8 @@ type MetricName<T extends string> = T extends `${infer _a}${DisallowedChars}${in
 function incrementMetric<T extends string>(_metric: MetricName<T>) { }
 
 incrementMetric("hello")
-incrementMetric("he'llo")
-incrementMetric("helloWorld")
-incrementMetric(`hello world`)
-incrementMetric("")
+// // Linije koda ispod ne prolaze validaciju:
+// incrementMetric("he'llo")
+// incrementMetric("helloWorld")
+// incrementMetric(`hello world`)
+// incrementMetric("")
