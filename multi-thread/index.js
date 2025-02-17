@@ -77,3 +77,4 @@ function run(jobs, concurrentWorkers) {
 const jobs = Array.from({ length: 100 }, () => 1000000)
 const concurrentWorkers = 4; // Number of worker threads
 run(jobs, concurrentWorkers);
+console.log('Original JOBS array zbog splice:', jobs);
