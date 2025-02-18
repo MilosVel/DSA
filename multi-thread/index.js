@@ -48,13 +48,15 @@ function chunkify(array, n) {
     let chunks = []
     for (let i = n; i > 0; i--) {
         chunks.push(array.splice(0, Math.ceil(array.length / i)))
+        // console.log('Original araray of jobs',array)
     }
     return chunks
 }
 
 function run(jobs, concurrentWorkers) {
     const chunks = chunkify(jobs, concurrentWorkers)
-    console.log(chunks);
+    // console.log(chunks);
+
 
     chunks.forEach((data, i) => {
         const worker = new Worker('./worker.js')
@@ -75,6 +77,6 @@ function run(jobs, concurrentWorkers) {
     })
 }
 const jobs = Array.from({ length: 100 }, () => 1000000)
-const concurrentWorkers = 4; // Number of worker threads
+const concurrentWorkers = 8; // Number of worker threads
 run(jobs, concurrentWorkers);
 console.log('Original JOBS array zbog splice:', jobs);
