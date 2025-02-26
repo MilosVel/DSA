@@ -45,7 +45,7 @@ export function groupBy<T, K extends keyof T>(items: T[], key: K) {
 }
 
 
-// console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
+console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
 
 
 // [
@@ -110,7 +110,7 @@ const formattedGroups = Object.entries(groupedSidebarLinks).map(([key, value]) =
   data: value,
 }));
 
-// console.log(JSON.stringify(formattedGroups, null, 2));
+console.log(JSON.stringify(formattedGroups, null, 2));
 
 
 // [
