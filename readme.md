@@ -10,3 +10,5 @@
 - Pokretanje: npx tsx src/index.ts
 - node --version je v20.15.0
 - node --version je v20.5.1
+
+- POKRETANJE: npx tsx index.ts
