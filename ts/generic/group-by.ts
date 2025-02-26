@@ -77,8 +77,45 @@ console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
 //   }
 // ]
 
+const groupedSidebarLinks = Object.groupBy(initialSidebarLinks, ({ group }) => group);
+
+// Transform into the desired array structure
+const formattedGroups = Object.entries(groupedSidebarLinks).map(([key, value]) => ({
+  title: key,
+  data: value,
+}));
+
+console.log(JSON.stringify(formattedGroups, null, 2));
 
 
+// [
+//   {
+//     "title": "General",
+//     "data": [
+//       {
+//         "name": "Outlets",
+//         "group": "General"
+//       }
+//     ]
+//   },
+//   {
+//     "title": "Overview",
+//     "data": [
+//       {
+//         "name": "Staffing request",
+//         "group": "Overview"
+//       },
+//       {
+//         "name": "Timesheet",
+//         "group": "Overview"
+//       },
+//       {
+//         "name": "Weekly schedule",
+//         "group": "Overview"
+//       }
+//     ]
+//   }
+// ]
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
