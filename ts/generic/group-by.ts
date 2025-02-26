@@ -45,7 +45,7 @@ export function groupBy<T, K extends keyof T>(items: T[], key: K) {
 }
 
 
-console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
+// console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
 
 
 // [
@@ -79,13 +79,38 @@ console.log(JSON.stringify(groupBy(initialSidebarLinks,'group'),null,2))
 
 const groupedSidebarLinks = Object.groupBy(initialSidebarLinks, ({ group }) => group);
 
+console.log(JSON.stringify(groupedSidebarLinks,null,2))
+
+// {
+//   "General": [
+//     {
+//       "name": "Outlets",
+//       "group": "General"
+//     }
+//   ],
+//   "Overview": [
+//     {
+//       "name": "Staffing request",
+//       "group": "Overview"
+//     },
+//     {
+//       "name": "Timesheet",
+//       "group": "Overview"
+//     },
+//     {
+//       "name": "Weekly schedule",
+//       "group": "Overview"
+//     }
+//   ]
+// }
+
 // Transform into the desired array structure
 const formattedGroups = Object.entries(groupedSidebarLinks).map(([key, value]) => ({
   title: key,
   data: value,
 }));
 
-console.log(JSON.stringify(formattedGroups, null, 2));
+// console.log(JSON.stringify(formattedGroups, null, 2));
 
 
 // [
