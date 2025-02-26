@@ -15,11 +15,6 @@ export function createSelectOption<T>(
     return items.map(formatItem);
 }
 
-export function removeEmptyValuesFromObject(obj: Record<string, unknown>) {
-    return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== ''));
-}
-
-
 // Example 1: Basic usage of createSelectOption with simple objects
 type User = {
     id: string;
@@ -101,6 +96,12 @@ console.log(contactOptions);
     }
 ]
 */
+
+
+export function removeEmptyValuesFromObject(obj: Record<string, unknown>) {
+    return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== ''));
+}
+
 
 // Example 3: Using removeEmptyValuesFromObject
 const formData = {
