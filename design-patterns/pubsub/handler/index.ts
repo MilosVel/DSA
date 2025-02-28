@@ -39,6 +39,7 @@ handlers.subscribe(({ contents }) => contents);
 for (const name of fs.readdirSync("./files")) {
   const contents = fs.readFileSync(`./files/${name}`, "utf8");
   const output = handlers.publish({ name, contents });
+  console.log('Output je: ',output)
   console.log(`${name}: ${JSON.stringify(output)}`);
 }
 
