@@ -45,3 +45,7 @@ for (const name of fs.readdirSync("./files")) {
 
 
 
+// Output je:  { message: 'Pozdrav Milos' }
+// json-file.json: {"message":"Pozdrav Milos"}
+// Output je:  Hello Milos
+// text-file.txt: "Hello Milos"
