@@ -16,6 +16,7 @@ export function createHandlerStack<MessageType>() {
       for (const subscriber of Array.from(subscribers)) {
         data = subscriber(msg);
         if (data !== undefined) {
+          console.log('Braeking loop');
           break;
         }
       }
@@ -45,7 +46,9 @@ for (const name of fs.readdirSync("./files")) {
 
 
 
+// Braeking loop
 // Output je:  { message: 'Pozdrav Milos' }
 // json-file.json: {"message":"Pozdrav Milos"}
+// Braeking loop
 // Output je:  Hello Milos
 // text-file.txt: "Hello Milos"
