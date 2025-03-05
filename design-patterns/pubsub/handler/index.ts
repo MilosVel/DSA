@@ -52,3 +52,20 @@ for (const name of fs.readdirSync("./files")) {
 // Braeking loop
 // Output je:  Hello Milos
 // text-file.txt: "Hello Milos"
+
+
+
+
+// PS C:\Users\Korisnik\Desktop\s\godisnji izvestaj sve\godisnji izvestaj o ucinku za 2021 godinu\z\R&N\DSA\design-patterns\pubsub\handler> npx tsx index.ts
+// Ovo ispod je ako se zamne mesta subscriber funkcijama
+
+
+
+// Braeking loop
+// Output je:  {
+//     "message": "Pozdrav Milos"
+//   }
+// json-file.json: "{\r\n    \"message\": \"Pozdrav Milos\"\r\n  }"
+// Braeking loop
+// Output je:  Hello Milos
+// text-file.txt: "Hello Milos"
