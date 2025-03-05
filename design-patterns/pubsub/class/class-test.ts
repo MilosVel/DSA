@@ -24,9 +24,3 @@ const dcUnsub2 = dc.subscribe((v: number) => console.log(`DC2: ${v}`));
 dc.setValue(42);
 dcUnsub();
 dcUnsub2();
-
-
-// Hello
-// Whatever
-// DC: 42
-// DC2: 42

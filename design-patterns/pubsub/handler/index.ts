@@ -16,6 +16,7 @@ export function createHandlerStack<MessageType>() {
       for (const subscriber of Array.from(subscribers)) {
         data = subscriber(msg);
         if (data !== undefined) {
+          console.log('Braeking loop');
           break;
         }
       }
@@ -39,10 +40,32 @@ handlers.subscribe(({ contents }) => contents);
 for (const name of fs.readdirSync("./files")) {
   const contents = fs.readFileSync(`./files/${name}`, "utf8");
   const output = handlers.publish({ name, contents });
+  console.log('Output je: ',output)
   console.log(`${name}: ${JSON.stringify(output)}`);
 }
 
 
 
+// Braeking loop
+// Output je:  { message: 'Pozdrav Milos' }
 // json-file.json: {"message":"Pozdrav Milos"}
+// Braeking loop
+// Output je:  Hello Milos
+// text-file.txt: "Hello Milos"
+
+
+
+
+// PS C:\Users\Korisnik\Desktop\s\godisnji izvestaj sve\godisnji izvestaj o ucinku za 2021 godinu\z\R&N\DSA\design-patterns\pubsub\handler> npx tsx index.ts
+// Ovo ispod je ako se zamne mesta subscriber funkcijama
+
+
+
+// Braeking loop
+// Output je:  {
+//     "message": "Pozdrav Milos"
+//   }
+// json-file.json: "{\r\n    \"message\": \"Pozdrav Milos\"\r\n  }"
+// Braeking loop
+// Output je:  Hello Milos
 // text-file.txt: "Hello Milos"
