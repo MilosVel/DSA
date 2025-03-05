@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    /* default je width:100% */
+
+    /* min-height: 100vh; */
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    background-color: #efefef;
+  }
+  
+  #root {
+    border:2px solid orange;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .App {
+    width: 100%;
+    max-width: 800px;
+    border:3px solid red;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+header,footer{
+    width:100%;
+    border:2px solid green;
+
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+div[class^="component"] {
+    width:100%;
+    border:2px solid blue;
+    flex-grow:1;
+    overflow-y: auto;
+
+
+    /* display:flex;
+    justify-content:center;
+    align-items: center; */
+}
