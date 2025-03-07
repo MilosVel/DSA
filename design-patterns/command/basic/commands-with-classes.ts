@@ -52,7 +52,7 @@ class SetValue extends Command<number> {
     this._originalValue = state;
     return this.value;
   }
-  undo(state: number) {
+  undo() {
     return this._originalValue!;
   }
 }
