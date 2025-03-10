@@ -33,7 +33,7 @@ function createObservable<DataType>(data: DataType): Observable<DataType> {
         },
         {
             set: function (target: object, prop: string, value: any) {
-                Reflect.set(target, prop, value);
+                Reflect.set(target, prop, value); //  not same but similar as this code: target[prop] = value;
                 subscribers.publish({
                     target,
                     prop,
