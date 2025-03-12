@@ -30,7 +30,7 @@ interface Pokemon {
 
 
 // JSON: {
-//     count: 1304,
+//     count: 1302,
 //     next: 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20',
 //     previous: null,
 //     results: [
@@ -80,7 +80,7 @@ interface Pokemon {
 //   Iterator:  { name: 'rattata', url: 'https://pokeapi.co/api/v2/pokemon/19/' }
 //   Iterator:  { name: 'raticate', url: 'https://pokeapi.co/api/v2/pokemon/20/' }
 //   JSON: {
-//     count: 1304,
+//     count: 1302,
 //     next: 'https://pokeapi.co/api/v2/pokemon/?offset=40&limit=20',
 //     previous: 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20',
 //     results: [
