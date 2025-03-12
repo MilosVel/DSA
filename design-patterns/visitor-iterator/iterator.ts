@@ -18,6 +18,7 @@ interface Pokemon {
 }
 
 (async function () {
+    console.log('IIFE')
     for await (const result of iterateResults<Pokemon>(
         "https://pokeapi.co/api/v2/pokemon/"
     )) {
