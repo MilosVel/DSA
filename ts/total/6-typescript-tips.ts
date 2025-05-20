@@ -156,7 +156,7 @@ type UserTransformed = {
 
 
 
-////////////////     TIP 6 IIMT
+////////////////     TIP 6 IIMT  (imidiate index mapped type)
 
 
 type Actions = {
