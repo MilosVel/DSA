@@ -77,5 +77,5 @@ for (let i = 1; i < data.length; i++) {
 }
 
 const xmlString = root.end({ prettyPrint: true });
-fs.writeFileSync('output.xml', xmlString, 'utf8');
+fs.writeFileSync('Placanje.xml', xmlString, 'utf8');
 console.log('XML file generated: output.xml');
