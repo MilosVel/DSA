@@ -9,9 +9,6 @@ export const readExcelFile = (filePath: string): ExcelRow[] => {
 
         // This will use the first row as keys and return an array of objects
         const data = XLSX.utils.sheet_to_json<ExcelRow>(worksheet, { defval: '' });
-        console.log('Total rows in Excel:', data.length);
-        console.log('First row:', data[0]);
-        console.log('Second row:', data[1]);
         return data;
     } catch (error) {
         console.error('Error reading Excel file:', error);
