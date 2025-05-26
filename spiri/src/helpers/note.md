@@ -1,0 +1,1 @@
+obratiti paznju na credit_reference_number i external_id

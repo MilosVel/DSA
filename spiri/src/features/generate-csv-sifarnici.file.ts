@@ -1,27 +1,10 @@
-// npx tsx sifarnici.ts
+// npx tsx src/features/generate-csv-sifarnici.file.ts
 
 import * as fs from 'fs';
-import XLSX from 'xlsx';
 
-console.log('Placanje...');
-
-// Path to the Excel file
-const filePath = './placanje/Placanje.xlsx';
-
-// Read the Excel workbook
-const workbook = XLSX.readFile(filePath);
-const sheetName = workbook.SheetNames[0];
-const worksheet = workbook.Sheets[sheetName];
-
-// Convert sheet to JSON array using first row as headers
-const data: any[] = XLSX.utils.sheet_to_json(worksheet, { 
-  defval: '',
-  header: 1  // Use first row as headers
-});
-
+import { data } from '../utils/loaded-data';
 
 const headers = data[0];
-
 
 let csvContent = '';
 for (let i = 1; i < data.length; i++) {
@@ -44,5 +27,6 @@ for (let i = 1; i < data.length; i++) {
 }
 
 
-fs.writeFileSync('Sifarnici.csv', csvContent, 'utf8');
+// fs.writeFileSync('Sifarnici.csv', csvContent, 'utf8');
+fs.writeFileSync('./zaSpiri/Sifarnici.csv', csvContent, 'utf8');
 console.log(' generated: Sifarnici.csv from Placanje.xlsx');

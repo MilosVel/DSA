@@ -1,26 +1,10 @@
-// npx tsx index.ts
+// npx tsx src/features/generate-xml-payment-file.ts
 
 import * as fs from 'fs';
-import XLSX from 'xlsx';
 import { create } from 'xmlbuilder2';
 
-console.log('Placanje...');
+import { data } from '../utils/loaded-data';
 
-// Path to the Excel file
-const filePath = './placanje/Placanje.xlsx';
-
-// Read the Excel workbook
-const workbook = XLSX.readFile(filePath);
-const sheetName = workbook.SheetNames[0];
-const worksheet = workbook.Sheets[sheetName];
-
-// Convert sheet to JSON array using first row as headers
-const data: any[] = XLSX.utils.sheet_to_json(worksheet, { 
-  defval: '',
-  header: 1  // Use first row as headers
-});
-
-// Constants for static values that are the same for all records
 const BUDGET_YEAR = '2025';
 const CUMULATIVE_REASON_CODE = 'PO07';
 const CURRENCY_CODE = 'RSD';
@@ -45,18 +29,18 @@ for (let i = 1; i < data.length; i++) {
   
   // Create commitment element
   const commitment = root.ele('commitment', {
-    reason_code: row[headers.indexOf('reason_code')] || 'PO01',
+    reason_code: row[headers.indexOf('reason_code')] || 'PO01', // default value is PO01
     external_id: row[headers.indexOf('external_id')] ,
     recipient_place: row[headers.indexOf('recipient_place')] ,
     recipient: row[headers.indexOf('recipient')],
     account_number: row[headers.indexOf('account_number')],
     invoice_number: row[headers.indexOf('invoice_number')],
-    invoice_type: row[headers.indexOf('invoice_type')] || '3',
+    invoice_type: row[headers.indexOf('invoice_type')] || '3', // default value is 3
     invoice_date: row[headers.indexOf('invoice_date')],
     due_date: row[headers.indexOf('due_date')],
-    contract_number: row[headers.indexOf('contract_number')] || '',
+    contract_number: row[headers.indexOf('contract_number')] || '', // default value is empty string
     payment_code: row[headers.indexOf('payment_code')],
-    credit_model: row[headers.indexOf('credit_model')] || '',
+    credit_model: row[headers.indexOf('credit_model')] || '', // default value is empty string
     credit_reference_number: row[headers.indexOf('credit_reference_number')],
     payment_basis: row[headers.indexOf('payment_basis')]
   });
@@ -77,5 +61,6 @@ for (let i = 1; i < data.length; i++) {
 }
 
 const xmlString = root.end({ prettyPrint: true });
-fs.writeFileSync('output.xml', xmlString, 'utf8');
+// fs.writeFileSync('Placanje.xml', xmlString, 'utf8');
+fs.writeFileSync('./zaSpiri/Placanje.xml', xmlString, 'utf8')
 console.log('XML file generated: output.xml');
