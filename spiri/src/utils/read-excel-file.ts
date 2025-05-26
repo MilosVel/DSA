@@ -1,21 +1,20 @@
-
-import * as fs from 'fs';
 import XLSX from 'xlsx';
+import { ExcelRow } from './types';
 
-const filePath = './input/Placanje.xlsx';
-export const readExcelFile = (filePath: string) => {
+export const readExcelFile = (filePath: string): ExcelRow[] => {
+    try {
+        const workbook = XLSX.readFile(filePath);
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
 
-    // Read the Excel workbook
-    const workbook = XLSX.readFile(filePath);
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    
-    // Convert sheet to JSON array using first row as headers
-    const data: any[] = XLSX.utils.sheet_to_json(worksheet, { 
-      defval: '',
-      header: 1  // Use first row as headers
-    });
-
-    return data;
+        // This will use the first row as keys and return an array of objects
+        const data = XLSX.utils.sheet_to_json<ExcelRow>(worksheet, { defval: '' });
+        console.log('Total rows in Excel:', data.length);
+        console.log('First row:', data[0]);
+        console.log('Second row:', data[1]);
+        return data;
+    } catch (error) {
+        console.error('Error reading Excel file:', error);
+        throw error;
+    }
 };
-

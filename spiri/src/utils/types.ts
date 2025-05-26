@@ -1,0 +1,30 @@
+export interface ExcelRow {
+  budget_user_id: string;
+  recipient: string;
+  recipient_place: string;
+  address: string;
+  JMBG: string;
+  account_number: string;
+  banka: string;
+  reason_code: string;
+  external_id: string;
+  invoice_number: string;
+  invoice_type: string;
+  invoice_date: string;
+  due_date: string;
+  contract_number: string;
+  payment_code: string;
+  credit_model: string;
+  credit_reference_number: string;
+  payment_basis: string;
+  function_code: string;
+  program_code: string;
+  project_code: string;
+  source_of_funding_code: string;
+  economic_classification_code: string;
+  sub_economic_classification_code: string;
+  amount: string;
+  expected_payment_date: string;
+  urgent_payment: string;
+  posting_account: string;
+} 
