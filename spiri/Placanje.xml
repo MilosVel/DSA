@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<commitments budget_year="2025" cumulative_reason_code="PO07" budget_user_id="04646" currency_code="RSD" treasury="029">
+  <commitment reason_code="PO01" external_id="4645005022" recipient_place="BRUS" recipient="VLADIMIR SINDJELIC" account_number="200000012715962919" invoice_number="320-115/2023-I" invoice_type="3" invoice_date="2025-05-26" due_date="2025-05-26" contract_number="" payment_code="290" credit_model="" credit_reference_number="320115/2023I" payment_basis="subvencije">
+    <item>
+      <budget_user_id>04646</budget_user_id>
+      <function_code>420</function_code>
+      <program_code>0101</program_code>
+      <project_code>0002</project_code>
+      <source_of_funding_code>01</source_of_funding_code>
+      <economic_classification_code>454111</economic_classification_code>
+      <sub_economic_classification_code/>
+      <amount>25000</amount>
+      <expected_payment_date>2025-05-26</expected_payment_date>
+      <urgent_payment>false</urgent_payment>
+      <posting_account>242411</posting_account>
+    </item>
+  </commitment>
+  <commitment reason_code="PO01" external_id="4645005023" recipient_place="BRUS" recipient="MIROLJUB GRCAK" account_number="205100155380867787" invoice_number="320-121/2023-I" invoice_type="3" invoice_date="2025-05-26" due_date="2025-05-26" contract_number="" payment_code="290" credit_model="" credit_reference_number="320121/2023I" payment_basis="subvencije">
+    <item>
+      <budget_user_id>04646</budget_user_id>
+      <function_code>420</function_code>
+      <program_code>0101</program_code>
+      <project_code>0002</project_code>
+      <source_of_funding_code>01</source_of_funding_code>
+      <economic_classification_code>454111</economic_classification_code>
+      <sub_economic_classification_code/>
+      <amount>25000</amount>
+      <expected_payment_date>2025-05-26</expected_payment_date>
+      <urgent_payment>false</urgent_payment>
+      <posting_account>242411</posting_account>
+    </item>
+  </commitment>
+</commitments>
