@@ -47,7 +47,7 @@ for (const row of data) {
   item.ele('project_code').txt(row.project_code);
   item.ele('source_of_funding_code').txt(row.source_of_funding_code);
   item.ele('economic_classification_code').txt(row.economic_classification_code);
-  item.ele('sub_economic_classification_code').txt(row.sub_economic_classification_code);
+  item.ele('sub_economic_classification_code').txt(row.sub_economic_classification_code || '');
   item.ele('amount').txt(row.amount);
   item.ele('expected_payment_date').txt(row.expected_payment_date);
   item.ele('urgent_payment').txt(row.urgent_payment);
@@ -55,7 +55,12 @@ for (const row of data) {
 }
 
 try {
-  const xmlString = root.end({ prettyPrint: true });
+  const xmlString = root.end({ 
+    prettyPrint: true,
+    indent: '  ',
+    newline: '\n',
+    allowEmptyTags: true
+  });
   fs.writeFileSync('./zaSpiri/Placanje.xml', xmlString, 'utf8');
   console.log('XML file generated: zaSpiri/Placanje.xml');
 } catch (error) {
