@@ -1,6 +1,5 @@
 ////////////////     TIP 3 Prettify
 
-
 type ComplexType = {
     a: string;
     b: string;
@@ -22,7 +21,6 @@ type ShowMe = Prettify<ComplexType>
 //   d: number[];
 // }
 
-
 ////////////////////////////////////////////////////////
 
 type ToDiscoUnion<T extends Record<string, object>
@@ -43,8 +41,6 @@ type State = ToDiscoUnion<{
     name: string;
   };
 }>;
-
-
 
 // type State =
 //   | {
