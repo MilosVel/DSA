@@ -1,15 +1,15 @@
 ////////////////     TIP 3 Prettify
 
 type ComplexType = {
-    a: string;
-    b: string;
+  a: string;
+  b: string;
 } & Omit<{
-    c: boolean;
+  c: boolean;
 } & Record<'d', number[]>, 'c'>
 
 
 type Prettify<T> = {
-    [K in keyof T]: T[K]
+  [K in keyof T]: T[K]
 } & {}   // ovo je uobicajeni nastavak za Prettify & {}
 
 
@@ -54,3 +54,5 @@ type State = ToDiscoUnion<{
 //       type: 'complete';
 //       name: string;
 //     };
+
+////////////////
