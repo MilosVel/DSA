@@ -8,3 +8,9 @@ type ResultString = ExcludeFromArray<Arr,number> // type ResultString = string[]
 
 type ResultNumber = ExcludeFromArray<Arr,string> // type ResultNumber = number[]
 
+//////////////////////  hepler
+
+
+type helper = Arr[number] // type helper = string | number
+
+
