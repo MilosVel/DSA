@@ -24,35 +24,35 @@ type ChargeWithDate = Omit<ChargeEntry, 'price_type'> & {
     date: string;
 };
 
-// type GroupedChargeResult = Partial<
-//     Record<
-//         Lowercase<PriceType>,
-//         {
-//             current: {
-//                 hourly_charge: number;
-//                 date: string;
-//             };
-//             future?: {
-//                 hourly_charge: number;
-//                 dates: string[];
-//             };
-//         }
-//     >
-// >;
+type GroupedChargeResult = Partial<
+    Record<
+        Lowercase<PriceType>,
+        {
+            current: {
+                hourly_charge: number;
+                date: string;
+            };
+            future?: {
+                hourly_charge: number;
+                dates: string[];
+            };
+        }
+    >
+>;
 
 
-type GroupedChargeResult = {
-    [K in Lowercase<PriceType>]?: {
-        current: {
-            hourly_charge: number;
-            date: string;
-        };
-        future?: {
-            hourly_charge: number;
-            dates: string[];
-        };
-    };
-};
+// type GroupedChargeResult = {
+//     [K in Lowercase<PriceType>]?: {
+//         current: {
+//             hourly_charge: number;
+//             date: string;
+//         };
+//         future?: {
+//             hourly_charge: number;
+//             dates: string[];
+//         };
+//     };
+// };
 
 
 const groupCharges = (
