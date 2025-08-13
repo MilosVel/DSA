@@ -12,12 +12,12 @@ type PriceType =
     | 'SPECIAL_OUTLET_MEMBER_POSITION_PRICE'
     | 'SPECIAL_MANUALLY_SET_PRICE';
 
-type ChargeEntry = {
+type ChargeDetail = {
     hourly_charge: number;
     price_type: PriceType;
 };
 
-type ChargeWithDate = Omit<ChargeEntry, 'price_type'> & {
+type ChargeWithDate = Omit<ChargeDetail, 'price_type'> & {
     price_type: Lowercase<PriceType>;
     date: string;
 };
@@ -52,7 +52,7 @@ type GroupedChargeResult = Partial<
 // };
 
 const groupCharges = (
-    chargeByDateMap: Record<string, ChargeEntry>,
+    chargeByDateMap: Record<string, ChargeDetail>,
 ): GroupedChargeResult | undefined => {
     // Group by normalized price_type
     const groupedByType = Object.entries(chargeByDateMap).reduce(
@@ -119,7 +119,7 @@ const charge_by_date_map = {
 };
 
 const groupedCharges = groupCharges(
-    charge_by_date_map as Record<string, ChargeEntry>,
+    charge_by_date_map as Record<string, ChargeDetail>,
 );
 
 console.dir(groupedCharges, { depth: null });
