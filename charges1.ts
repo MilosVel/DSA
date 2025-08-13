@@ -31,7 +31,7 @@ type GroupedChargeResult = Partial<
         {
             current: {
                 hourly_charge: number;
-                date: string;
+                dates: string[];
             };
             future?: {
                 hourly_charge: number;
@@ -72,10 +72,9 @@ const groupCharges = (
         {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
     );
 
-    // For each type, sort and split into current/future
+
     const result = Object.entries(groupedByType).reduce(
         (acc, [priceType, charges]) => {
-
             const sortedCharges = charges.sort((a, b) =>
                 compareAsc(parseISO(a.date), parseISO(b.date)),
             );
@@ -84,14 +83,18 @@ const groupCharges = (
 
             const firstCharge = sortedCharges[0];
 
-            const restCharges = sortedCharges
-                .slice(1)
-                .filter(c => c.hourly_charge !== firstCharge.hourly_charge);
+            // Group future charges: only different hourly_charge than current
+            const restCharges = sortedCharges.slice().filter(c => c.hourly_charge !== firstCharge.hourly_charge);
+
+            // Group current dates: all with the same hourly_charge as first
+            const currentDates = sortedCharges
+                .filter(c => c.hourly_charge === firstCharge.hourly_charge)
+                .map(c => c.date);
 
             acc[priceType as Lowercase<PriceType>] = {
                 current: {
                     hourly_charge: firstCharge.hourly_charge,
-                    date: firstCharge.date,
+                    dates: currentDates, // array of dates
                 },
             };
 
@@ -106,6 +109,7 @@ const groupCharges = (
         },
         {} as GroupedChargeResult,
     );
+
 
     return result;
 };
