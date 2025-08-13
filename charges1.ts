@@ -72,6 +72,7 @@ const groupCharges = (
     // For each type, sort and split into current/future
     const result = Object.entries(groupedByType).reduce(
         (acc, [priceType, charges]) => {
+
             const sortedCharges = charges.sort((a, b) =>
                 compareAsc(parseISO(a.date), parseISO(b.date)),
             );
@@ -79,7 +80,10 @@ const groupCharges = (
             if (sortedCharges.length === 0) return acc;
 
             const firstCharge = sortedCharges[0];
-            const restCharges = sortedCharges.slice(1);
+
+            const restCharges = sortedCharges
+                .slice(1)
+                .filter(c => c.hourly_charge !== firstCharge.hourly_charge);
 
             acc[priceType as Lowercase<PriceType>] = {
                 current: {
@@ -91,7 +95,7 @@ const groupCharges = (
             if (restCharges.length > 0) {
                 acc[priceType as Lowercase<PriceType>]!.future = {
                     hourly_charge: restCharges[0].hourly_charge,
-                    dates: restCharges.map((c) => c.date),
+                    dates: restCharges.map(c => c.date),
                 };
             }
 
