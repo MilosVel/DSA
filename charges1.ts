@@ -1,10 +1,8 @@
 import { compareAsc, parseISO } from 'date-fns';
 
-
 export function convertStringToLowercase(text: string) {
     return text.toLowerCase();
 }
-
 
 // All possible PriceTypes
 type PriceType =
@@ -40,7 +38,6 @@ type GroupedChargeResult = Partial<
     >
 >;
 
-
 // type GroupedChargeResult = {
 //     [K in Lowercase<PriceType>]?: {
 //         current: {
@@ -54,14 +51,15 @@ type GroupedChargeResult = Partial<
 //     };
 // };
 
-
 const groupCharges = (
     chargeByDateMap: Record<string, ChargeEntry>,
 ): GroupedChargeResult | undefined => {
     // Group by normalized price_type
     const groupedByType = Object.entries(chargeByDateMap).reduce(
         (acc, [date, charge]) => {
-            const price_type = convertStringToLowercase(charge.price_type);
+            const price_type = convertStringToLowercase(
+                charge.price_type,
+            ) as Lowercase<PriceType>;
             if (!acc[price_type]) {
                 acc[price_type] = [];
             }
