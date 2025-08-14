@@ -79,16 +79,16 @@ const groupCharges = (
 
     const result = Object.entries(groupedByType).reduce(
         (acc, [priceType, charges]) => {
-            const sortedCharges = charges.sort((a, b) =>
-                compareAsc(parseISO(a.date), parseISO(b.date)),
-            );
+
+            const sortedCharges = [...charges].sort((a, b) =>
+                compareAsc(parseISO(a.date), parseISO(b.date)));
 
             if (sortedCharges.length === 0) return acc;
 
             const firstCharge = sortedCharges[0];
 
             // Group future charges: only different hourly_charge than current
-            const restCharges = sortedCharges.slice().filter(c => c.hourly_charge !== firstCharge.hourly_charge);
+            const restCharges = sortedCharges.filter(c => c.hourly_charge !== firstCharge.hourly_charge);
 
             // Group current dates: all with the same hourly_charge as first
             const currentDates = sortedCharges
