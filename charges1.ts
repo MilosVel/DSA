@@ -3,6 +3,10 @@
 
 import { compareAsc, parseISO } from 'date-fns';
 
+type Prettify<T> = {
+    [K in keyof T]: T[K]
+} & {}   // ovo je uobicajeni nastavak za Prettify & {}
+
 export function convertStringToLowercase(text: string) {
     return text.toLowerCase();
 }
@@ -20,10 +24,10 @@ type ChargeDetail = {
     price_type: PriceType;
 };
 
-type ChargeWithDate = Omit<ChargeDetail, 'price_type'> & {
+type ChargeWithDate = Prettify<Omit<ChargeDetail, 'price_type'> & {
     price_type: Lowercase<PriceType>;
     date: string;
-};
+}>
 
 type GroupedChargeResult = Partial<
     Record<
