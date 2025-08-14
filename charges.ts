@@ -57,7 +57,7 @@ type GroupedChargeResult = Partial<
 
 const groupCharges = (
     chargeByDateMap: Record<string, ChargeDetail>,
-): GroupedChargeResult | undefined => {
+): GroupedChargeResult => {
     // Group by normalized price_type
     const groupedByType = Object.entries(chargeByDateMap).reduce(
         (acc, [date, charge]) => {
