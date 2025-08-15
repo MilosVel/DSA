@@ -16,12 +16,12 @@ type PriceType =
     | 'SPECIAL_OUTLET_MEMBER_POSITION_PRICE'
     | 'SPECIAL_MANUALLY_SET_PRICE';
 
-type ChargeDetail = {
+type IChargeDetail = {
     hourly_charge: number;
     price_type: PriceType;
 };
 
-type ChargeWithDate = Prettify<Omit<ChargeDetail, 'price_type'> & {
+type ChargeWithDate = Prettify<Omit<IChargeDetail, 'price_type'> & {
     price_type: Lowercase<PriceType>;
     date: string;
 }>
@@ -55,65 +55,64 @@ type GroupedChargeResult = Partial<
 //     };
 // };
 
-const groupCharges = (
-    chargeByDateMap: Record<string, ChargeDetail>,
+
+export const groupCharges = (
+  chargeByDateMap: Record<string, IChargeDetail>,
 ): GroupedChargeResult => {
-    // Group by normalized price_type
-    const groupedByType = Object.entries(chargeByDateMap).reduce(
-        (acc, [date, charge]) => {
-            const price_type = convertStringToLowercase(
-                charge.price_type,
-            ) as Lowercase<PriceType>;
-            if (!acc[price_type]) {
-                acc[price_type] = [];
-            }
-            acc[price_type]!.push({ date, ...charge, price_type });
-            return acc;
+  const groupedByType = Object.entries(chargeByDateMap).reduce(
+    (acc, [date, charge]) => {
+      const price_type = convertStringToLowercase(
+        charge.price_type,
+      ) as Lowercase<PriceType>;
+      if (!acc[price_type]) {
+        acc[price_type] = [];
+      }
+      acc[price_type]!.push({ date, ...charge, price_type });
+      return acc;
+    },
+    {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
+  );
+
+  const result = Object.entries(groupedByType).reduce(
+    (acc, [priceType, charges]) => {
+      const sortedCharges = [...charges].sort((a, b) =>
+        compareAsc(parseISO(a.date), parseISO(b.date)),
+      );
+
+      if (sortedCharges.length === 0) return acc;
+
+      const firstCharge = sortedCharges[0];
+
+      const restCharges = sortedCharges.filter(
+        (c) => c.hourly_charge !== firstCharge.hourly_charge,
+      );
+
+      const currentDates = sortedCharges
+        .filter((c) => c.hourly_charge === firstCharge.hourly_charge)
+        .map((c) => c.date);
+
+      acc[priceType as Lowercase<PriceType>] = {
+        current: {
+          hourly_charge: firstCharge.hourly_charge,
+          dates: currentDates,
         },
-        {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
-    );
+      };
 
+      if (restCharges.length > 0) {
+        acc[priceType as Lowercase<PriceType>]!.future = {
+          hourly_charge: restCharges[0].hourly_charge,
+          dates: restCharges.map((c) => c.date),
+        };
+      }
 
-    const result = Object.entries(groupedByType).reduce(
-        (acc, [priceType, charges]) => {
+      return acc;
+    },
+    {} as GroupedChargeResult,
+  );
 
-            const sortedCharges = [...charges].sort((a, b) =>
-                compareAsc(parseISO(a.date), parseISO(b.date)));
-
-            if (sortedCharges.length === 0) return acc;
-
-            const firstCharge = sortedCharges[0];
-
-            // Group future charges: only different hourly_charge than current
-            const restCharges = sortedCharges.filter(c => c.hourly_charge !== firstCharge.hourly_charge);
-
-            // Group current dates: all with the same hourly_charge as first
-            const currentDates = sortedCharges
-                .filter(c => c.hourly_charge === firstCharge.hourly_charge)
-                .map(c => c.date);
-
-            acc[priceType as Lowercase<PriceType>] = {
-                current: {
-                    hourly_charge: firstCharge.hourly_charge,
-                    dates: currentDates, // array of dates
-                },
-            };
-
-            if (restCharges.length > 0) {
-                acc[priceType as Lowercase<PriceType>]!.future = {
-                    hourly_charge: restCharges[0].hourly_charge,
-                    dates: restCharges.map(c => c.date),
-                };
-            }
-
-            return acc;
-        },
-        {} as GroupedChargeResult,
-    );
-
-
-    return result;
+  return result;
 };
+
 
 
 // Example backend data
@@ -140,16 +139,12 @@ const charge_by_date_map = {
 };
 
 const groupedCharges = groupCharges(
-    charge_by_date_map as Record<string, ChargeDetail>,
+    charge_by_date_map as Record<string, IChargeDetail>,
 );
 
 console.dir(groupedCharges, { depth: null });
 
-// ✅ Requires optional chaining (TS will warn if `?.` is missing)
 console.log(groupedCharges?.outlet_member_position_price);
-
-////  This will throw ts error
-// console.log(groupedCharges.outlet_member_position_price);
 
 
 // {
