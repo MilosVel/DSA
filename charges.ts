@@ -26,6 +26,13 @@ type ChargeWithDate = Prettify<Omit<IChargeDetail, 'price_type'> & {
     date: string;
 }>
 
+
+interface IDateChargeMap extends Record<string, IChargeDetail> { }
+//  interface IDateChargeMap {
+//     [key: string]: IChargeDetail;
+// }
+
+
 type GroupedChargeResult = Partial<
     Record<
         Lowercase<PriceType>,
@@ -56,63 +63,65 @@ type GroupedChargeResult = Partial<
 // };
 
 
+
+
+
 export const groupCharges = (
-  chargeByDateMap: Record<string, IChargeDetail>,
+    dateChargeMap: IDateChargeMap,
 ): GroupedChargeResult => {
-  const groupedByType = Object.entries(chargeByDateMap).reduce(
-    (acc, [date, charge]) => {
-      const price_type = convertStringToLowercase(
-        charge.price_type,
-      ) as Lowercase<PriceType>;
-      if (!acc[price_type]) {
-        acc[price_type] = [];
-      }
-      acc[price_type]!.push({ date, ...charge, price_type });
-      return acc;
-    },
-    {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
-  );
-
-  const result = Object.entries(groupedByType).reduce(
-    (acc, [priceType, charges]) => {
-      const sortedCharges = [...charges].sort((a, b) =>
-        compareAsc(parseISO(a.date), parseISO(b.date)),
-      );
-
-      if (sortedCharges.length === 0) return acc;
-
-      const firstCharge = sortedCharges[0];
-
-      const restCharges = sortedCharges.filter(
-        (c) => c.hourly_charge !== firstCharge.hourly_charge,
-      );
-
-      const currentDates = sortedCharges
-        .filter((c) => c.hourly_charge === firstCharge.hourly_charge)
-        .map((c) => c.date);
-
-      acc[priceType as Lowercase<PriceType>] = {
-        current: {
-          hourly_charge: firstCharge.hourly_charge,
-          dates: currentDates,
+    const groupedByType = Object.entries(dateChargeMap).reduce(
+        (acc, [date, charge]) => {
+            const price_type = convertStringToLowercase(
+                charge.price_type,
+            ) as Lowercase<PriceType>;
+            if (!acc[price_type]) {
+                acc[price_type] = [];
+            }
+            acc[price_type]!.push({ date, ...charge, price_type });
+            return acc;
         },
-      };
+        {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
+    );
 
-      if (restCharges.length > 0) {
-        acc[priceType as Lowercase<PriceType>]!.future = {
-          hourly_charge: restCharges[0].hourly_charge,
-          dates: restCharges.map((c) => c.date),
-        };
-      }
+    const result = Object.entries(groupedByType).reduce(
+        (acc, [priceType, charges]) => {
+            const sortedCharges = [...charges].sort((a, b) =>
+                compareAsc(parseISO(a.date), parseISO(b.date)),
+            );
 
-      return acc;
-    },
-    {} as GroupedChargeResult,
-  );
+            if (sortedCharges.length === 0) return acc;
 
-  return result;
+            const firstCharge = sortedCharges[0];
+
+            const restCharges = sortedCharges.filter(
+                (c) => c.hourly_charge !== firstCharge.hourly_charge,
+            );
+
+            const currentDates = sortedCharges
+                .filter((c) => c.hourly_charge === firstCharge.hourly_charge)
+                .map((c) => c.date);
+
+            acc[priceType as Lowercase<PriceType>] = {
+                current: {
+                    hourly_charge: firstCharge.hourly_charge,
+                    dates: currentDates,
+                },
+            };
+
+            if (restCharges.length > 0) {
+                acc[priceType as Lowercase<PriceType>]!.future = {
+                    hourly_charge: restCharges[0].hourly_charge,
+                    dates: restCharges.map((c) => c.date),
+                };
+            }
+
+            return acc;
+        },
+        {} as GroupedChargeResult,
+    );
+
+    return result;
 };
-
 
 
 // Example backend data
