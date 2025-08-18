@@ -219,3 +219,33 @@ console.dir(groupedCharges, { depth: null });
 
 console.log(groupedCharges?.outlet_member_position_price);
 
+// {
+//   outlet_position_price: {
+//     current: {
+//       hourly_charge: 33,
+//       dates: [
+//         '2025-08-12',
+//         '2025-08-13',
+//         '2025-08-14',
+//         '2025-08-16',
+//         '2025-08-21',
+//         '2025-08-31',
+//         '2025-09-06'
+//       ]
+//     }
+//   },
+//   outlet_member_position_price: {
+//     current: { hourly_charge: 33, dates: [ '2025-08-22', '2025-08-24' ] }
+//   },
+//   special_outlet_member_position_price: { current: { hourly_charge: 33, dates: [ '2025-08-23' ] } },
+//   special_manually_set_price: {
+//     current: { hourly_charge: 33, dates: [ '2025-08-01', '2025-08-25' ] }
+//   },
+//   special_outlet_position_price: {
+//     current: { hourly_charge: 33, dates: [ '2025-08-10', '2025-08-28' ] },
+//     future: { hourly_charge: 35, dates: [ '2025-08-29' ] }
+//   }
+// }
+// {
+//   current: { hourly_charge: 33, dates: [ '2025-08-22', '2025-08-24' ] }
+// }
