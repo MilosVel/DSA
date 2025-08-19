@@ -83,7 +83,22 @@ export const groupCharges = (
         {} as Record<Lowercase<PriceType>, ChargeWithDate[]>,
     );
 
-    const result = Object.entries(groupedByType).reduce(
+
+
+    const sortedGroupedByType = Object.fromEntries(
+        Object.entries(groupedByType).sort(([a], [b]) => {
+            const aHasSpecial = a.includes('special');
+            const bHasSpecial = b.includes('special');
+
+            if (aHasSpecial && !bHasSpecial) return 1;
+            if (!aHasSpecial && bHasSpecial) return -1;
+            return a.localeCompare(b);
+        }),
+    ) as Record<Lowercase<PriceType>, ChargeWithDate[]>;
+
+
+    // const result = Object.entries(groupedByType).reduce(
+    const result = Object.entries(sortedGroupedByType).reduce(
         (acc, [priceType, charges]) => {
             const sortedCharges = [...charges].sort((a, b) =>
                 compareAsc(parseISO(a.date), parseISO(b.date)),
