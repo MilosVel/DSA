@@ -38,7 +38,7 @@ class DocumentService {
 const docService = new DocumentService();
 try {
   docService.viewDocument('doc123');
-//   docService.deleteDocument('doc123');
+  docService.deleteDocument('doc123');
 } catch (error: any) {
   console.log(error.message);
 }
