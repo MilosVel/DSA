@@ -1,3 +1,5 @@
+// npx tsx .\ts\decorators\method.ts
+
 // // 1. Method Authorization Decorator
 
 type UserRole = 'admin' | 'editor' | 'viewer';
