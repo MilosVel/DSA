@@ -1,3 +1,5 @@
+// // 1. Method Authorization Decorator
+
 type UserRole = 'admin' | 'editor' | 'viewer';
 
 const currentUser = {
@@ -42,3 +44,36 @@ try {
 } catch (error: any) {
   console.log(error.message);
 }
+
+
+//// 2.Deprecation Warning Decorator
+
+
+function deprecated(message: string) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    const originalMethod = descriptor.value;
+    descriptor.value = function (...args: any[]) {
+      console.warn(`Warning: ${propertyKey} is deprecated. ${message}`);
+      return originalMethod.apply(this, args);
+    };
+    return descriptor;
+  };
+}
+
+class PaymentService {
+  @deprecated('Use processPaymentV2 instead')
+  processPayment(amount: number, currency: string) {
+    console.log(`Processing payment of ${amount} ${currency}`);
+  }
+  processPaymentV2(amount: number, currency: string) {
+    console.log(`Processing payment v2 of ${amount} ${currency}`);
+  }
+}
+
+const payment = new PaymentService();
+payment.processPayment(100, 'USD');
+payment.processPaymentV2(100, 'USD');
