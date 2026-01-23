@@ -1,6 +1,42 @@
 // npx tsx .\ts\decorators\method.ts
 
-// // 1. Method Authorization Decorator
+function measureTime(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args: any[]) {
+
+    // Make timing deterministic for the demo
+    const _origNow = performance.now;
+    let called = 0;
+    (performance as any).now = () => (called++ === 0 ? 0 : 50);
+    const start = performance.now();
+    const result = originalMethod.apply(this, args);
+    const end = performance.now();
+    // restore
+    (performance as any).now = _origNow;
+    console.log(`${propertyKey} executed in ${(end - start).toFixed(2)}ms`);
+    return result;
+  };
+  return descriptor;
+}
+
+class DataProcessor {
+  @measureTime
+  processData(data: number[]): number[] {
+    // Minimal deterministic work
+    return data.map(x => x * 2);
+  }
+}
+
+const processor = new DataProcessor();
+processor.processData([1, 2, 3]);
+
+
+
+// // 2. Method Authorization Decorator
 
 type UserRole = 'admin' | 'editor' | 'viewer';
 
